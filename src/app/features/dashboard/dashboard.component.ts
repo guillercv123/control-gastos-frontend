@@ -20,6 +20,6 @@ export class DashboardComponent {
   }
 
   nuevoGasto(){
-    this.router.navigate(['/gastos/nuevo']);
+    this.router.navigate(['gastos/nuevo']);
   }
 }

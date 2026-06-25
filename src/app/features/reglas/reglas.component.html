@@ -1,0 +1,52 @@
+<div class="reglas">
+  <header class="r-topbar">
+    <a routerLink="/dashboard" class="r-back"><span class="material-symbols-outlined">arrow_back</span></a>
+    <div>
+      <h1 class="r-title">Reglas de categorizaci&oacute;n</h1>
+      <p class="r-sub">Si un gasto contiene la palabra clave, se sugiere esa categor&iacute;a.</p>
+    </div>
+  </header>
+
+  <div class="cg-card r-form">
+    <div class="r-form-field">
+      <label>Palabra clave</label>
+      <input class="cg-input" type="text" placeholder="ej. tambo" [(ngModel)]="keyword" (keyup.enter)="agregar()" />
+    </div>
+    <span class="r-arrow material-symbols-outlined">arrow_forward</span>
+    <div class="r-form-field">
+      <label>Categor&iacute;a</label>
+      <input class="cg-input" type="text" placeholder="ej. mercado" [(ngModel)]="categoria" (keyup.enter)="agregar()" />
+    </div>
+    <button class="cg-btn cg-btn--primary r-add" (click)="agregar()" [disabled]="agregando()">
+      <span class="material-symbols-outlined">add</span> Agregar
+    </button>
+  </div>
+
+  @if (error()) {
+    <p class="r-error">{{ error() }}</p>
+  }
+
+  @if (cargando()) {
+    <div class="r-state">Cargando...</div>
+  } @else {
+    <div class="cg-card r-list">
+      @for (r of reglas(); track r.id) {
+        <div class="r-row">
+          <div class="r-rule">
+            <span class="r-keyword">{{ r.keyword }}</span>
+            <span class="material-symbols-outlined r-row-arrow">arrow_forward</span>
+            <span class="r-cat">{{ r.categoria }}</span>
+          </div>
+          <button class="r-del" (click)="eliminar(r)" aria-label="Eliminar regla">
+            <span class="material-symbols-outlined">delete</span>
+          </button>
+        </div>
+      } @empty {
+        <div class="r-empty">
+          <span class="material-symbols-outlined">rule</span>
+          <p>A&uacute;n no tienes reglas. Agrega una arriba para que el sistema sugiera categor&iacute;as solo.</p>
+        </div>
+      }
+    </div>
+  }
+</div>

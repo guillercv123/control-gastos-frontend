@@ -6,6 +6,9 @@
     </div>
     <div class="dash-user">
       <div class="dash-avatar">GC</div>
+      <a routerLink="/reglas" class="dash-icon-btn" aria-label="Reglas">
+        <span class="material-symbols-outlined">settings</span>
+      </a>
       <button class="dash-icon-btn" (click)="salir()" aria-label="Cerrar sesi&oacute;n">
         <span class="material-symbols-outlined">logout</span>
       </button>
@@ -21,7 +24,7 @@
       </div>
       <div class="dash-actions">
         <button class="cg-btn"><span class="material-symbols-outlined">upload_file</span> Importar CSV</button>
-        <button class="cg-btn cg-btn--primary"><span class="material-symbols-outlined" (click)="nuevoGasto()">add</span> Nuevo gasto</button>
+        <button class="cg-btn cg-btn--primary" (click)="nuevoGasto()"><span class="material-symbols-outlined">add</span> Nuevo gasto</button>
       </div>
     </div>
 
