@@ -1,0 +1,49 @@
+.gastos { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+
+.g-topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+.g-back {
+  display: flex; color: var(--cg-muted); text-decoration: none;
+  width: 36px; height: 36px; border-radius: 9px; align-items: center; justify-content: center;
+  border: 1px solid var(--cg-border); background: var(--cg-surface);
+}
+.g-back:hover { background: #f8fafc; color: var(--cg-text); }
+.g-title { font-size: 20px; font-weight: 600; flex: 1; }
+.g-topbar .material-symbols-outlined { font-size: 18px; }
+
+.g-filtros {
+  display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 12px; align-items: end;
+  padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+}
+@media (max-width: 640px) { .g-filtros { grid-template-columns: 1fr 1fr; } }
+.g-field { display: flex; flex-direction: column; gap: 5px; }
+.g-field label { font-size: 12px; color: var(--cg-muted); }
+.g-field-actions { display: flex; gap: 8px; }
+
+.g-state { padding: 2rem; text-align: center; color: var(--cg-muted); }
+.g-state--error { color: #b91c1c; }
+
+.g-summary {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin: 0 4px 10px; font-size: 13px; color: var(--cg-muted);
+}
+.g-summary-total { font-size: 16px; font-weight: 600; color: var(--cg-text); }
+
+.g-list { padding: 0.25rem 1.25rem; }
+.g-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid var(--cg-border); }
+.g-row:first-child { border-top: none; }
+.g-left { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+.dot--hormiga { background: var(--cg-hormiga); }
+.dot--neutral { background: #cbd5e1; }
+.g-name { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g-meta { font-size: 11.5px; color: var(--cg-faint); margin-top: 1px; }
+.g-right { display: flex; align-items: center; gap: 10px; flex: none; }
+.g-amount { font-size: 14px; font-weight: 600; }
+.g-amount--hormiga { color: var(--cg-hormiga); }
+.g-action { display: flex; color: var(--cg-faint); text-decoration: none; padding: 4px; border-radius: 7px; }
+.g-action:hover { background: #f1f5f9; color: var(--cg-primary); }
+.g-action .material-symbols-outlined { font-size: 18px; }
+
+.g-empty { text-align: center; padding: 2.5rem 1rem; color: var(--cg-faint); }
+.g-empty .material-symbols-outlined { font-size: 40px; }
+.g-empty p { margin: 8px 0 0; font-size: 13px; }

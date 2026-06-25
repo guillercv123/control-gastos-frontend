@@ -1,0 +1,67 @@
+<div class="gastos">
+  <header class="g-topbar">
+    <a routerLink="/dashboard" class="g-back"><span class="material-symbols-outlined">arrow_back</span></a>
+    <h1 class="g-title">Mis gastos</h1>
+    <a routerLink="/gastos/nuevo" class="cg-btn cg-btn--primary"><span class="material-symbols-outlined">add</span> Nuevo</a>
+  </header>
+
+  <div class="cg-card g-filtros">
+    <div class="g-field">
+      <label>Mes</label>
+      <input class="cg-input" type="month" [(ngModel)]="mes" (change)="cargar()" />
+    </div>
+    <div class="g-field">
+      <label>Categor&iacute;a</label>
+      <input class="cg-input" type="text" placeholder="Todas" [(ngModel)]="categoria" (keyup.enter)="cargar()" />
+    </div>
+    <div class="g-field">
+      <label>M&eacute;todo</label>
+      <select class="cg-input" [(ngModel)]="metodo" (change)="cargar()">
+        <option value="">Todos</option>
+        @for (m of metodos; track m) {
+          <option [value]="m">{{ m }}</option>
+        }
+      </select>
+    </div>
+    <div class="g-field-actions">
+      <button class="cg-btn cg-btn--primary" (click)="cargar()">Filtrar</button>
+      <button class="cg-btn" (click)="limpiar()">Limpiar</button>
+    </div>
+  </div>
+
+  @if (cargando()) {
+    <div class="g-state">Cargando...</div>
+  } @else if (error()) {
+    <div class="g-state g-state--error">{{ error() }}</div>
+  } @else {
+    <div class="g-summary">
+      <span>{{ total() }} {{ total() === 1 ? 'gasto' : 'gastos' }}</span>
+      <span class="g-summary-total">{{ soles(totalMonto()) }}</span>
+    </div>
+
+    <div class="cg-card g-list">
+      @for (g of gastos(); track g.id) {
+        <div class="g-row">
+          <div class="g-left">
+            <span class="dot" [class.dot--hormiga]="g.esHormiga" [class.dot--neutral]="!g.esHormiga"></span>
+            <div>
+              <div class="g-name">{{ g.comercio || g.descripcion || 'Sin descripci&oacute;n' }}</div>
+              <div class="g-meta">{{ g.fecha }} &middot; {{ g.categoria }} &middot; {{ g.metodoPago }}</div>
+            </div>
+          </div>
+          <div class="g-right">
+            <span class="g-amount" [class.g-amount--hormiga]="g.esHormiga">{{ soles(g.monto) }}</span>
+            <a [routerLink]="['/gastos', g.id, 'editar']" class="g-action" aria-label="Editar">
+              <span class="material-symbols-outlined">edit</span>
+            </a>
+          </div>
+        </div>
+      } @empty {
+        <div class="g-empty">
+          <span class="material-symbols-outlined">receipt_long</span>
+          <p>No hay gastos con estos filtros.</p>
+        </div>
+      }
+    </div>
+  }
+</div>

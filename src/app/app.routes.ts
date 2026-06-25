@@ -13,6 +13,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
   },
+  {
+    path: 'gastos',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/gastos/gastos-list.component').then((m) => m.GastosListComponent),
+  },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: '**', redirectTo: 'dashboard' },
 ];
