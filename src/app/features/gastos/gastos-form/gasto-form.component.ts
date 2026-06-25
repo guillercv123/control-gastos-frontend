@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { GastoService } from '../../core/services/gasto.service';
-import { ReglaService } from '../../core/services/regla.service';
-import { CrearGasto, MetodoPago, METODOS_PAGO } from '../../core/models/gasto.model';
+import { GastoService } from '../../../core/services/gasto.service';
+import { ReglaService } from '../../../core/services/regla.service';
+import { CrearGasto, MetodoPago, METODOS_PAGO } from '../../../core/models/gasto.model';
 
 @Component({
   selector: 'app-gasto-form',

@@ -23,13 +23,13 @@ export const routes: Routes = [
     path: 'gastos/nuevo',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/gastos/gasto-form.component').then((m) => m.GastoFormComponent),
+      import('./features/gastos/gastos-form/gasto-form.component').then((m) => m.GastoFormComponent),
   },
   {
     path: 'gastos/:id/editar',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/gastos/gasto-form.component').then((m) => m.GastoFormComponent),
+      import('./features/gastos/gastos-form/gasto-form.component').then((m) => m.GastoFormComponent),
   },
   {
     path: 'reglas',

@@ -16,6 +16,14 @@
   --cg-shadow-md: 0 6px 20px rgba(15,23,42,.08);
 }
 
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
