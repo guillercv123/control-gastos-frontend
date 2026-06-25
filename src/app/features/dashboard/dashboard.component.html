@@ -1,5 +1,103 @@
-<header>
-  <h1>Mis gastos</h1>
-  <button (click)="salir()">Cerrar sesi&oacute;n</button>
-</header>
-<p>Aqu&iacute; ir&aacute; el dashboard (5.C). Si ves esto, el login y el guard funcionan.</p>
+<div class="dash">
+  <header class="dash-topbar">
+    <div class="dash-brand">
+      <span class="material-symbols-outlined dash-brand-icon">savings</span>
+      <span class="dash-brand-name">Control de Gastos</span>
+    </div>
+    <div class="dash-user">
+      <div class="dash-avatar">GC</div>
+      <button class="dash-icon-btn" (click)="salir()" aria-label="Cerrar sesi&oacute;n">
+        <span class="material-symbols-outlined">logout</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="dash-main">
+    <div class="dash-head">
+      <div class="dash-month">
+        <span class="material-symbols-outlined">calendar_month</span>
+        <span>Junio 2026</span>
+        <span class="material-symbols-outlined dash-month-chev">expand_more</span>
+      </div>
+      <div class="dash-actions">
+        <button class="cg-btn"><span class="material-symbols-outlined">upload_file</span> Importar CSV</button>
+        <button class="cg-btn cg-btn--primary"><span class="material-symbols-outlined">add</span> Nuevo gasto</button>
+      </div>
+    </div>
+
+    <section class="dash-cards">
+      <div class="metric">
+        <div class="metric-label">Total gastado</div>
+        <div class="metric-value">S/ 540.50</div>
+      </div>
+      <div class="metric metric--hormiga">
+        <div class="metric-label">Gastos hormiga</div>
+        <div class="metric-value">S/ 180.50</div>
+      </div>
+      <div class="metric metric--hormiga">
+        <div class="metric-label">% hormiga</div>
+        <div class="metric-value">33%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Proyecci&oacute;n anual</div>
+        <div class="metric-value metric-value--hormiga">S/ 2,166</div>
+      </div>
+    </section>
+
+    <section class="dash-charts">
+      <div class="cg-card chart-card">
+        <div class="chart-title">Hormiga vs resto</div>
+        <div class="donut-row">
+          <svg class="donut" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#a7f3d0" stroke-width="13"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="var(--cg-hormiga)" stroke-width="13"
+                    stroke-dasharray="83 251" transform="rotate(-90 48 48)"/>
+            <text x="48" y="46" text-anchor="middle" class="donut-pct">33%</text>
+            <text x="48" y="61" text-anchor="middle" class="donut-cap">hormiga</text>
+          </svg>
+          <ul class="legend">
+            <li><span class="dot dot--hormiga"></span> Hormiga &middot; S/ 180.50</li>
+            <li><span class="dot dot--resto"></span> Resto &middot; S/ 360.00</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cg-card chart-card">
+        <div class="chart-title">Por categor&iacute;a</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-head"><span>Comida</span><span>S/ 210</span></div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></div>
+          <div class="bar-row"><div class="bar-head"><span>Mercado</span><span>S/ 150</span></div><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div></div>
+          <div class="bar-row"><div class="bar-head"><span>Transporte</span><span>S/ 95</span></div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div></div>
+          <div class="bar-row"><div class="bar-head"><span>Otros</span><span>S/ 85</span></div><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cg-card list-card">
+      <div class="list-head">
+        <span class="list-title">&Uacute;ltimos gastos</span>
+        <a class="list-link">Ver todos</a>
+      </div>
+      <div class="g-row">
+        <div class="g-left"><span class="dot dot--hormiga"></span>
+          <div><div class="g-name">Tambo Larco</div><div class="g-meta">12 jun &middot; mercado &middot; yape</div></div></div>
+        <span class="g-amount g-amount--hormiga">S/ 8.50</span>
+      </div>
+      <div class="g-row">
+        <div class="g-left"><span class="dot dot--hormiga"></span>
+          <div><div class="g-name">Uber centro</div><div class="g-meta">11 jun &middot; transporte &middot; tarjeta</div></div></div>
+        <span class="g-amount g-amount--hormiga">S/ 12.00</span>
+      </div>
+      <div class="g-row">
+        <div class="g-left"><span class="dot dot--neutral"></span>
+          <div><div class="g-name">Mercado mayorista</div><div class="g-meta">10 jun &middot; mercado &middot; efectivo</div></div></div>
+        <span class="g-amount">S/ 90.00</span>
+      </div>
+      <div class="g-row">
+        <div class="g-left"><span class="dot dot--neutral"></span>
+          <div><div class="g-name">Netflix</div><div class="g-meta">09 jun &middot; suscripciones &middot; tarjeta</div></div></div>
+        <span class="g-amount">S/ 44.90</span>
+      </div>
+    </section>
+  </main>
+</div>

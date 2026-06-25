@@ -1,11 +1,33 @@
-<div class="login">
-  <h1>Control de Gastos</h1>
-  <input type="email" placeholder="Correo" [(ngModel)]="email" [disabled]="cargando()" />
-  <input type="password" placeholder="Contrase&ntilde;a" [(ngModel)]="password" [disabled]="cargando()" />
-  <button (click)="entrar()" [disabled]="cargando()">
-    {{ cargando() ? 'Entrando...' : 'Entrar' }}
-  </button>
-  @if (error()) {
-    <p class="error">{{ error() }}</p>
-  }
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-logo"><span class="material-symbols-outlined">savings</span></div>
+      <div class="login-title">Control de Gastos</div>
+      <div class="login-sub">Vigila tus gastos hormiga</div>
+    </div>
+
+    <div class="login-field">
+      <label class="login-label" for="email">Correo</label>
+      <input id="email" class="cg-input" type="email" placeholder="tucorreo@ejemplo.com"
+             [(ngModel)]="email" [disabled]="cargando()" />
+    </div>
+
+    <div class="login-field">
+      <label class="login-label" for="password">Contrase&ntilde;a</label>
+      <input id="password" class="cg-input" type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+             [(ngModel)]="password" [disabled]="cargando()" />
+    </div>
+
+    <button class="cg-btn cg-btn--primary login-btn" (click)="entrar()" [disabled]="cargando()">
+      {{ cargando() ? 'Entrando...' : 'Entrar' }}
+    </button>
+
+    @if (error()) {
+      <p class="login-error">{{ error() }}</p>
+    }
+
+    <div class="login-foot">
+      <span class="material-symbols-outlined">lock</span> Acceso seguro con Amazon Cognito
+    </div>
+  </div>
 </div>

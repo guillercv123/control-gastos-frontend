@@ -1,0 +1,82 @@
+.dash { min-height: 100vh; }
+
+.dash-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px; background: var(--cg-surface);
+  border-bottom: 1px solid var(--cg-border);
+  position: sticky; top: 0; z-index: 10;
+}
+.dash-brand { display: flex; align-items: center; gap: 8px; }
+.dash-brand-icon { color: var(--cg-primary); font-size: 24px; }
+.dash-brand-name { font-weight: 600; font-size: 16px; }
+.dash-user { display: flex; align-items: center; gap: 12px; }
+.dash-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--cg-primary-soft); color: var(--cg-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+}
+.dash-icon-btn {
+  border: none; background: none; cursor: pointer; color: var(--cg-muted);
+  display: flex; padding: 5px; border-radius: 8px;
+}
+.dash-icon-btn:hover { background: #f1f5f9; color: var(--cg-text); }
+
+.dash-main { max-width: 960px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+
+.dash-head {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 1.25rem;
+}
+.dash-month { display: flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 600; }
+.dash-month .material-symbols-outlined { color: var(--cg-muted); font-size: 20px; }
+.dash-month-chev { color: var(--cg-faint) !important; cursor: pointer; }
+.dash-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.dash-actions .material-symbols-outlined { font-size: 18px; }
+
+.dash-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px; margin-bottom: 1.25rem;
+}
+.metric {
+  background: var(--cg-surface); border: 1px solid var(--cg-border);
+  border-radius: var(--cg-radius); padding: 1rem 1.1rem; box-shadow: var(--cg-shadow);
+}
+.metric-label { font-size: 13px; color: var(--cg-muted); }
+.metric-value { font-size: 26px; font-weight: 600; margin-top: 6px; letter-spacing: -.02em; }
+.metric--hormiga { background: var(--cg-hormiga-soft); border-color: #fde68a; }
+.metric--hormiga .metric-label { color: #b45309; }
+.metric--hormiga .metric-value { color: var(--cg-hormiga); }
+.metric-value--hormiga { color: var(--cg-hormiga); }
+
+.dash-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.25rem; }
+@media (max-width: 640px) { .dash-charts { grid-template-columns: 1fr; } }
+.chart-card { padding: 1.1rem 1.25rem; }
+.chart-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+.donut-row { display: flex; align-items: center; gap: 16px; }
+.donut-pct { fill: var(--cg-text); font-size: 17px; font-weight: 600; }
+.donut-cap { fill: var(--cg-muted); font-size: 10px; }
+.legend { list-style: none; margin: 0; padding: 0; font-size: 12.5px; }
+.legend li { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; }
+.dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; flex: none; }
+.dot--hormiga { background: var(--cg-hormiga); }
+.dot--resto { background: var(--cg-primary); }
+.dot--neutral { background: #cbd5e1; }
+
+.bars { display: flex; flex-direction: column; gap: 10px; }
+.bar-head { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 4px; }
+.bar-head span:last-child { color: var(--cg-muted); }
+.bar-track { height: 8px; background: #eef2f7; border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 8px; background: var(--cg-primary); border-radius: 5px; }
+
+.list-card { padding: 1.1rem 1.25rem; }
+.list-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.list-title { font-size: 14px; font-weight: 600; }
+.list-link { font-size: 12.5px; color: var(--cg-primary); cursor: pointer; text-decoration: none; }
+.g-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-top: 1px solid var(--cg-border); }
+.g-left { display: flex; align-items: center; gap: 11px; }
+.g-left .dot { width: 8px; height: 8px; border-radius: 50%; }
+.g-name { font-size: 13.5px; }
+.g-meta { font-size: 11.5px; color: var(--cg-faint); margin-top: 1px; }
+.g-amount { font-size: 13.5px; font-weight: 600; }
+.g-amount--hormiga { color: var(--cg-hormiga); }

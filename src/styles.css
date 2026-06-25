@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --cg-primary: #059669;
+  --cg-primary-dark: #047857;
+  --cg-primary-soft: #d1fae5;
+  --cg-hormiga: #d97706;
+  --cg-hormiga-soft: #fef3c7;
+  --cg-bg: #f1f5f9;
+  --cg-surface: #ffffff;
+  --cg-text: #0f172a;
+  --cg-muted: #64748b;
+  --cg-faint: #94a3b8;
+  --cg-border: #e5e9f0;
+  --cg-radius: 14px;
+  --cg-radius-sm: 10px;
+  --cg-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+  --cg-shadow-md: 0 6px 20px rgba(15,23,42,.08);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--cg-bg);
+  color: var(--cg-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3 { margin: 0; font-weight: 600; line-height: 1.25; }
+a { color: inherit; }
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  user-select: none;
+  line-height: 1;
+}
+
+.cg-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: inherit; font-weight: 500; font-size: 14px;
+  padding: 9px 14px; border-radius: var(--cg-radius-sm);
+  border: 1px solid var(--cg-border); background: var(--cg-surface);
+  color: var(--cg-text); cursor: pointer;
+  transition: background .15s, border-color .15s, opacity .15s;
+}
+.cg-btn:hover { background: #f8fafc; }
+.cg-btn:active { transform: translateY(.5px); }
+.cg-btn:disabled { opacity: .55; cursor: default; }
+.cg-btn--primary { background: var(--cg-primary); border-color: var(--cg-primary); color: #fff; }
+.cg-btn--primary:hover { background: var(--cg-primary-dark); }
+
+.cg-input {
+  width: 100%; font: inherit; font-size: 15px;
+  padding: 11px 13px; border-radius: var(--cg-radius-sm);
+  border: 1px solid var(--cg-border); background: var(--cg-surface); color: var(--cg-text);
+  transition: border-color .15s, box-shadow .15s;
+}
+.cg-input:focus { outline: none; border-color: var(--cg-primary); box-shadow: 0 0 0 3px rgba(5,150,105,.15); }
+.cg-input:disabled { background: #f8fafc; color: var(--cg-muted); }
+.cg-input::placeholder { color: var(--cg-faint); }
+
+.cg-card {
+  background: var(--cg-surface); border: 1px solid var(--cg-border);
+  border-radius: var(--cg-radius); box-shadow: var(--cg-shadow);
+}
