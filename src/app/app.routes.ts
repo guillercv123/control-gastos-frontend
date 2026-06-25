@@ -19,6 +19,18 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/gastos/gastos-list.component').then((m) => m.GastosListComponent),
   },
+  {
+    path: 'gastos/nuevo',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/gastos/gasto-form.component').then((m) => m.GastoFormComponent),
+  },
+  {
+    path: 'gastos/:id/editar',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/gastos/gasto-form.component').then((m) => m.GastoFormComponent),
+  },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: '**', redirectTo: 'dashboard' },
 ];

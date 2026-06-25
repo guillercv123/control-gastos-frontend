@@ -21,7 +21,7 @@
       </div>
       <div class="dash-actions">
         <button class="cg-btn"><span class="material-symbols-outlined">upload_file</span> Importar CSV</button>
-        <button class="cg-btn cg-btn--primary"><span class="material-symbols-outlined">add</span> Nuevo gasto</button>
+        <button class="cg-btn cg-btn--primary"><span class="material-symbols-outlined" (click)="nuevoGasto()">add</span> Nuevo gasto</button>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
     <section class="cg-card list-card">
       <div class="list-head">
         <span class="list-title">&Uacute;ltimos gastos</span>
-        <a class="list-link">Ver todos</a>
+        <a class="list-link" [routerLink]="'/gastos'">Ver todos</a>
       </div>
       <div class="g-row">
         <div class="g-left"><span class="dot dot--hormiga"></span>

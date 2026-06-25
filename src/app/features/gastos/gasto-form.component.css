@@ -1,0 +1,40 @@
+.gf { max-width: 560px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+.gf-state { max-width: 560px; margin: 0 auto; padding: 3rem; text-align: center; color: var(--cg-muted); }
+.gf-topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+.gf-back { display: flex; color: var(--cg-muted); text-decoration: none; width: 36px; height: 36px; border-radius: 9px; align-items: center; justify-content: center; border: 1px solid var(--cg-border); background: var(--cg-surface); }
+.gf-back:hover { background: #f8fafc; color: var(--cg-text); }
+.gf-back .material-symbols-outlined { font-size: 18px; }
+.gf-title { font-size: 20px; font-weight: 600; }
+
+.gf-card { padding: 1.5rem; }
+.gf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .gf-row { grid-template-columns: 1fr; } }
+.gf-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.gf-field label { font-size: 13px; color: var(--cg-muted); }
+.gf-opt { color: var(--cg-faint); }
+
+.gf-monto { position: relative; display: flex; align-items: center; }
+.gf-monto-pre { position: absolute; left: 12px; color: var(--cg-muted); font-size: 14px; pointer-events: none; }
+.gf-monto .cg-input { padding-left: 34px; }
+
+.gf-sug {
+  align-self: flex-start; margin-top: 2px;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--cg-primary-soft); color: var(--cg-primary-dark);
+  border: none; border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 12.5px; cursor: pointer;
+}
+.gf-sug:hover { background: #bbf7d0; }
+.gf-sug .material-symbols-outlined { font-size: 15px; }
+.gf-sug strong { font-weight: 600; }
+
+.gf-error { margin: 0 0 14px; padding: 10px 12px; border-radius: 10px; background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; font-size: 13px; }
+
+.gf-actions { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.gf-save { min-width: 140px; justify-content: center; }
+.gf-delete {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; color: #dc2626; font: inherit; font-size: 13px; cursor: pointer;
+  padding: 8px 10px; border-radius: 8px;
+}
+.gf-delete:hover { background: #fef2f2; }
+.gf-delete .material-symbols-outlined { font-size: 18px; }

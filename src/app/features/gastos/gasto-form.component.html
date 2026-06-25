@@ -1,0 +1,74 @@
+@if (cargando()) {
+  <div class="gf-state">Cargando...</div>
+} @else {
+  <div class="gf">
+    <header class="gf-topbar">
+      <a routerLink="/gastos" class="gf-back"><span class="material-symbols-outlined">arrow_back</span></a>
+      <h1 class="gf-title">{{ esEdicion ? 'Editar gasto' : 'Nuevo gasto' }}</h1>
+    </header>
+
+    <div class="cg-card gf-card">
+      <div class="gf-row">
+        <div class="gf-field">
+          <label>Monto</label>
+          <div class="gf-monto">
+            <span class="gf-monto-pre">S/</span>
+            <input class="cg-input" type="number" min="0" step="0.10" placeholder="0.00" [(ngModel)]="monto" />
+          </div>
+        </div>
+        <div class="gf-field">
+          <label>Fecha</label>
+          <input class="cg-input" type="date" [(ngModel)]="fecha" />
+        </div>
+      </div>
+
+      <div class="gf-field">
+        <label>Comercio</label>
+        <input class="cg-input" type="text" placeholder="Ej. Tambo, Uber, Mercado..."
+               [(ngModel)]="comercio" (blur)="buscarSugerencia()" />
+      </div>
+
+      <div class="gf-field">
+        <label>Descripci&oacute;n <span class="gf-opt">(opcional)</span></label>
+        <input class="cg-input" type="text" placeholder="Una nota..."
+               [(ngModel)]="descripcion" (blur)="buscarSugerencia()" />
+      </div>
+
+      <div class="gf-field">
+        <label>Categor&iacute;a</label>
+        <input class="cg-input" type="text" placeholder="Ej. mercado, comida..." [(ngModel)]="categoria" />
+        @if (sugerencia()) {
+          <button type="button" class="gf-sug" (click)="aplicarSugerencia()">
+            <span class="material-symbols-outlined">auto_awesome</span>
+            Sugerencia: <strong>{{ sugerencia() }}</strong> &middot; Usar
+          </button>
+        }
+      </div>
+
+      <div class="gf-field">
+        <label>M&eacute;todo de pago</label>
+        <select class="cg-input" [(ngModel)]="metodoPago">
+          @for (m of metodos; track m) {
+            <option [value]="m">{{ m }}</option>
+          }
+        </select>
+      </div>
+
+      @if (error()) {
+        <p class="gf-error">{{ error() }}</p>
+      }
+
+      <div class="gf-actions">
+        <button class="cg-btn cg-btn--primary gf-save" (click)="guardar()" [disabled]="guardando()">
+          {{ guardando() ? 'Guardando...' : (esEdicion ? 'Guardar cambios' : 'Crear gasto') }}
+        </button>
+        <a routerLink="/gastos" class="cg-btn">Cancelar</a>
+        @if (esEdicion) {
+          <button type="button" class="gf-delete" (click)="eliminar()" [disabled]="guardando()">
+            <span class="material-symbols-outlined">delete</span> Eliminar
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+}
