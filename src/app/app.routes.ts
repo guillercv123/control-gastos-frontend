@@ -37,6 +37,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/reglas/reglas.component').then((m) => m.ReglasComponent),
   },
+  {
+    path: 'importar',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/importar/importar.component').then((m) => m.ImportarComponent),
+  },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: '**', redirectTo: 'dashboard' },
 ];

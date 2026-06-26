@@ -21,9 +21,9 @@
         <input type="month" class="dash-month-input" [(ngModel)]="mes" (change)="cargar()" />
       </label>
       <div class="dash-actions">
-        <button class="cg-btn" title="Disponible con la importaci&oacute;n CSV">
+        <a routerLink="/importar" class="cg-btn">
           <span class="material-symbols-outlined">upload_file</span> Importar CSV
-        </button>
+        </a>
         <a routerLink="/gastos/nuevo" class="cg-btn cg-btn--primary">
           <span class="material-symbols-outlined">add</span> Nuevo gasto
         </a>

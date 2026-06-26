@@ -1,0 +1,55 @@
+<div class="imp">
+  <header class="imp-topbar">
+    <a routerLink="/dashboard" class="imp-back"><span class="material-symbols-outlined">arrow_back</span></a>
+    <h1 class="imp-title">Importar gastos</h1>
+  </header>
+
+  <div class="cg-card imp-card">
+    @if (estado() === 'exito') {
+      <div class="imp-result">
+        <span class="material-symbols-outlined imp-ok-icon">check_circle</span>
+        <h2 class="imp-ok-title">&iexcl;Archivo subido!</h2>
+        <p class="imp-ok-text">
+          Tus gastos se est&aacute;n procesando en segundo plano. Aparecer&aacute;n en tu lista en unos momentos.
+        </p>
+        <div class="imp-actions">
+          <a routerLink="/gastos" class="cg-btn cg-btn--primary">Ver mis gastos</a>
+          <button class="cg-btn" (click)="reiniciar()">Subir otro</button>
+        </div>
+      </div>
+    } @else {
+      <p class="imp-intro">Sube un archivo <strong>.csv</strong> con tus gastos. La primera fila es la cabecera.</p>
+
+      <div class="imp-format">
+        <div class="imp-format-label">Formato esperado</div>
+<pre class="imp-pre">fecha,descripcion,monto,metodoPago,categoria
+2026-06-12,Tambo Larco,8.50,yape,mercado
+2026-06-13,Uber centro,12.00,yape,transporte</pre>
+        <p class="imp-hint">
+          Obligatorias: <code>fecha</code> (YYYY-MM-DD) y <code>monto</code>. Las dem&aacute;s son opcionales
+          &mdash; un m&eacute;todo desconocido cae en &laquo;otro&raquo; y una categor&iacute;a vac&iacute;a en &laquo;otros&raquo;.
+        </p>
+      </div>
+
+      <label class="imp-drop">
+        <input type="file" accept=".csv,text/csv" (change)="seleccionar($event)" hidden />
+        <span class="material-symbols-outlined">upload_file</span>
+        @if (archivo(); as f) {
+          <span class="imp-file">{{ f.name }}<span class="imp-size"> &middot; {{ pesoKb(f) }}</span></span>
+        } @else {
+          <span>Elegir archivo .csv</span>
+        }
+      </label>
+
+      @if (error()) {
+        <p class="imp-error">{{ error() }}</p>
+      }
+
+      <button class="cg-btn cg-btn--primary imp-submit"
+              [disabled]="!archivo() || estado() === 'subiendo'"
+              (click)="subir()">
+        @if (estado() === 'subiendo') { Subiendo... } @else { Subir e importar }
+      </button>
+    }
+  </div>
+</div>
