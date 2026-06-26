@@ -5,8 +5,7 @@
       <span class="dash-brand-name">Control de Gastos</span>
     </div>
     <div class="dash-user">
-      <div class="dash-avatar">GC</div>
-      <a routerLink="/reglas" class="dash-icon-btn" aria-label="Reglas">
+      <a routerLink="/reglas" class="dash-icon-btn" aria-label="Reglas de categorizaci&oacute;n">
         <span class="material-symbols-outlined">settings</span>
       </a>
       <button class="dash-icon-btn" (click)="salir()" aria-label="Cerrar sesi&oacute;n">
@@ -17,90 +16,106 @@
 
   <main class="dash-main">
     <div class="dash-head">
-      <div class="dash-month">
+      <label class="dash-month">
         <span class="material-symbols-outlined">calendar_month</span>
-        <span>Junio 2026</span>
-        <span class="material-symbols-outlined dash-month-chev">expand_more</span>
-      </div>
+        <input type="month" class="dash-month-input" [(ngModel)]="mes" (change)="cargar()" />
+      </label>
       <div class="dash-actions">
-        <button class="cg-btn"><span class="material-symbols-outlined">upload_file</span> Importar CSV</button>
-        <button class="cg-btn cg-btn--primary" (click)="nuevoGasto()"><span class="material-symbols-outlined">add</span> Nuevo gasto</button>
+        <button class="cg-btn" title="Disponible con la importaci&oacute;n CSV">
+          <span class="material-symbols-outlined">upload_file</span> Importar CSV
+        </button>
+        <a routerLink="/gastos/nuevo" class="cg-btn cg-btn--primary">
+          <span class="material-symbols-outlined">add</span> Nuevo gasto
+        </a>
       </div>
     </div>
 
-    <section class="dash-cards">
-      <div class="metric">
-        <div class="metric-label">Total gastado</div>
-        <div class="metric-value">S/ 540.50</div>
+    @if (error()) {
+      <div class="dash-state dash-state--error">
+        <span class="material-symbols-outlined">error</span>
+        <p>{{ error() }}</p>
+        <button class="cg-btn" (click)="cargar()">Reintentar</button>
       </div>
-      <div class="metric metric--hormiga">
-        <div class="metric-label">Gastos hormiga</div>
-        <div class="metric-value">S/ 180.50</div>
-      </div>
-      <div class="metric metric--hormiga">
-        <div class="metric-label">% hormiga</div>
-        <div class="metric-value">33%</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Proyecci&oacute;n anual</div>
-        <div class="metric-value metric-value--hormiga">S/ 2,166</div>
-      </div>
-    </section>
-
-    <section class="dash-charts">
-      <div class="cg-card chart-card">
-        <div class="chart-title">Hormiga vs resto</div>
-        <div class="donut-row">
-          <svg class="donut" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true">
-            <circle cx="48" cy="48" r="40" fill="none" stroke="#a7f3d0" stroke-width="13"/>
-            <circle cx="48" cy="48" r="40" fill="none" stroke="var(--cg-hormiga)" stroke-width="13"
-                    stroke-dasharray="83 251" transform="rotate(-90 48 48)"/>
-            <text x="48" y="46" text-anchor="middle" class="donut-pct">33%</text>
-            <text x="48" y="61" text-anchor="middle" class="donut-cap">hormiga</text>
-          </svg>
-          <ul class="legend">
-            <li><span class="dot dot--hormiga"></span> Hormiga &middot; S/ 180.50</li>
-            <li><span class="dot dot--resto"></span> Resto &middot; S/ 360.00</li>
-          </ul>
+    }
+    @if (resumen(); as r) {
+      <section class="dash-cards">
+        <div class="metric">
+          <div class="metric-label">Total gastado</div>
+          <div class="metric-value">{{ soles(r.totalGastado) }}</div>
         </div>
-      </div>
-
-      <div class="cg-card chart-card">
-        <div class="chart-title">Por categor&iacute;a</div>
-        <div class="bars">
-          <div class="bar-row"><div class="bar-head"><span>Comida</span><span>S/ 210</span></div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></div>
-          <div class="bar-row"><div class="bar-head"><span>Mercado</span><span>S/ 150</span></div><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div></div>
-          <div class="bar-row"><div class="bar-head"><span>Transporte</span><span>S/ 95</span></div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div></div>
-          <div class="bar-row"><div class="bar-head"><span>Otros</span><span>S/ 85</span></div><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div></div>
+        <div class="metric metric--hormiga">
+          <div class="metric-label">Gastos hormiga</div>
+          <div class="metric-value">{{ soles(r.totalHormiga) }}</div>
         </div>
-      </div>
-    </section>
+        <div class="metric metric--hormiga">
+          <div class="metric-label">% hormiga</div>
+          <div class="metric-value">{{ r.porcentajeHormiga }}%</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Proyecci&oacute;n anual</div>
+          <div class="metric-value metric-value--hormiga">{{ soles(r.proyeccionAnualHormiga) }}</div>
+        </div>
+      </section>
 
-    <section class="cg-card list-card">
-      <div class="list-head">
-        <span class="list-title">&Uacute;ltimos gastos</span>
-        <a class="list-link" [routerLink]="'/gastos'">Ver todos</a>
+      <section class="dash-charts">
+        <div class="cg-card chart-card">
+          <div class="chart-title">Hormiga vs resto</div>
+          <div class="donut-row">
+            <svg class="donut" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true">
+              <circle cx="48" cy="48" r="40" fill="none" stroke="#a7f3d0" stroke-width="13" />
+              <circle cx="48" cy="48" r="40" fill="none" stroke="var(--cg-hormiga)" stroke-width="13"
+                      [attr.stroke-dasharray]="dashHormiga()" transform="rotate(-90 48 48)"
+                      stroke-linecap="round" />
+              <text x="48" y="46" text-anchor="middle" class="donut-pct">{{ r.porcentajeHormiga }}%</text>
+              <text x="48" y="61" text-anchor="middle" class="donut-cap">hormiga</text>
+            </svg>
+            <ul class="legend">
+              <li><span class="dot dot--hormiga"></span> Hormiga &middot; {{ soles(r.totalHormiga) }}</li>
+              <li><span class="dot dot--resto"></span> Resto &middot; {{ soles(resto()) }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cg-card chart-card">
+          <div class="chart-title">Por categor&iacute;a</div>
+          <div class="bars">
+            @for (c of categorias(); track c.nombre) {
+              <div class="bar-row">
+                <div class="bar-head"><span>{{ c.nombre }}</span><span>{{ soles(c.monto) }}</span></div>
+                <div class="bar-track"><div class="bar-fill" [style.width.%]="c.pct"></div></div>
+              </div>
+            } @empty {
+              <p class="dash-empty">Sin gastos este mes.</p>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="cg-card list-card">
+        <div class="list-head">
+          <span class="list-title">&Uacute;ltimos gastos</span>
+          <a routerLink="/gastos" class="list-link">Ver todos</a>
+        </div>
+        @for (g of recientes(); track g.id) {
+          <a class="g-row" [routerLink]="['/gastos', g.id, 'editar']">
+            <div class="g-left">
+              <span class="dot" [class.dot--hormiga]="g.esHormiga" [class.dot--neutral]="!g.esHormiga"></span>
+              <div>
+                <div class="g-name">{{ g.comercio || g.categoria }}</div>
+                <div class="g-meta">{{ g.fecha }} &middot; {{ g.categoria }} &middot; {{ g.metodoPago }}</div>
+              </div>
+            </div>
+            <span class="g-amount" [class.g-amount--hormiga]="g.esHormiga">{{ soles(g.monto) }}</span>
+          </a>
+        } @empty {
+          <p class="dash-empty">No hay gastos en este mes. &iexcl;Registra el primero!</p>
+        }
+      </section>
+    } @else {
+      <div class="dash-state">
+        <span class="material-symbols-outlined dash-spin">progress_activity</span>
+        <p>Cargando tu resumen...</p>
       </div>
-      <div class="g-row">
-        <div class="g-left"><span class="dot dot--hormiga"></span>
-          <div><div class="g-name">Tambo Larco</div><div class="g-meta">12 jun &middot; mercado &middot; yape</div></div></div>
-        <span class="g-amount g-amount--hormiga">S/ 8.50</span>
-      </div>
-      <div class="g-row">
-        <div class="g-left"><span class="dot dot--hormiga"></span>
-          <div><div class="g-name">Uber centro</div><div class="g-meta">11 jun &middot; transporte &middot; tarjeta</div></div></div>
-        <span class="g-amount g-amount--hormiga">S/ 12.00</span>
-      </div>
-      <div class="g-row">
-        <div class="g-left"><span class="dot dot--neutral"></span>
-          <div><div class="g-name">Mercado mayorista</div><div class="g-meta">10 jun &middot; mercado &middot; efectivo</div></div></div>
-        <span class="g-amount">S/ 90.00</span>
-      </div>
-      <div class="g-row">
-        <div class="g-left"><span class="dot dot--neutral"></span>
-          <div><div class="g-name">Netflix</div><div class="g-meta">09 jun &middot; suscripciones &middot; tarjeta</div></div></div>
-        <span class="g-amount">S/ 44.90</span>
-      </div>
-    </section>
+    }
   </main>
 </div>
